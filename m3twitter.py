@@ -9,7 +9,7 @@ from m3inference import M3Inference
 import pprint
 
 RE_IMG_NAME=re.compile('<img class="photo" src="https://pbs.twimg.com/profile_images/(.*?)".*?>(.*?)</a>',re.DOTALL)
-RE_BIO=re.compile('<p class="note">(.*?)</p>')
+RE_BIO=re.compile('<p class="note">(.*?)</p>',re.DOTALL)
 TAG_RE = re.compile(r'<[^>]+>')
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s -   %(message)s',
