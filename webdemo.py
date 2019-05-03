@@ -3,13 +3,6 @@
 #
 
 from flask import Flask, url_for, render_template, Response
-import json
-import urllib.request
-
-import json
-import urllib.request
-import re
-import html
 
 from m3twitter import M3Twitter
 
