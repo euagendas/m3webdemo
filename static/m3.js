@@ -35,6 +35,12 @@ $(document).ready(function(){
 		$("#screen_name").html("");
 		$("#name").html("");
 		$("#output").html("");
+		$('#gender-prediction').text("");
+		$('#gender-plot').html("");
+		$('#age-prediction').text("");
+		$('#age-plot').html("");
+		$('#org-prediction').text("");
+		$('#org-plot').html("");
 	}
 
 	function set_data(data){
