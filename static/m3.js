@@ -26,12 +26,68 @@ $(document).ready(function(){
 	}
 
 	function set_data(data){
-		$("#img").attr("src",data["input"]["img_path"])
+		$("#img").attr("src", data["input"]["img_path"])
 		$("#bio").html(data["input"]["description"]);
-		$("#screen_name").html(data["input"]["screen_name"]);
+		$("#screen_name").html(' (@' + data["input"]["screen_name"] +")");
 		$("#name").html(data["input"]["name"]);
-		$("#output").html(JSON.stringify(data["output"],space=5));
+		$("#output").html(JSON.stringify(data["output"], null, space=5));
+
+		//--------------- ADDED BY GM ---------------
+
+		const {gender, age, org} = data.output;
+		const ageGroups = ['<=18','18-29','30-39','>=40'];  //ensure desired order
+		const xBaseAxis = {axis: {title: '', labelFontSize: 10}, scale: {domain: [0,1]}};
+		const yBaseAxis = {axis: {title: '', labelFontSize: 10.5}};
+		const plotWidth = 240;
+
+		//gender
+		$('#gender-prediction').text(gender.male > gender.female ? 'Male' : 'Female');
+		vegaEmbed(
+			'#gender-plot',
+			vz([
+					{Gender: 'Female', Probability: gender.female},
+					{Gender: 'Male',   Probability: gender.male}
+				])
+				.bar()
+				.x('Probability', 'q', xBaseAxis)
+				.y('Gender',      'n', yBaseAxis)
+				.width(plotWidth)
+				.prep(),
+			{actions: false}
+		);
+
+		//age
+		$('#age-prediction').text(() => {
+			const ageProbs = ageGroups.map(g => age[g]);
+			return ageGroups[ageProbs.indexOf(Math.max(...ageProbs))];
+		});
+		vegaEmbed(
+			'#age-plot',
+			vz(ageGroups.map(g => ({Age: g, Probability: age[g]})))
+				.bar()
+				.x('Probability', 'q', xBaseAxis)
+				.y('Age',         'n', Object.assign({sort: ageGroups}, yBaseAxis))
+				.width(plotWidth)
+				.prep(),
+			{actions: false}
+		);
+
+		//org
+		$('#org-prediction').text(org.is-org > org.non-org ? 'Organization' : 'Non-organization');
+		vegaEmbed(
+			'#org-plot',
+			vz([
+					{Org: 'Org',     Probability: org['is-org']},
+					{Org: 'Non-org', Probability: org['non-org']}
+				])
+				.bar()
+				.x('Probability', 'q', xBaseAxis)
+				.y('Org',         'n', yBaseAxis)
+				.width(plotWidth)
+				.prep(),
+			{actions: false}
+		);
+
 	}
 
-
-  });
+});

@@ -1,3 +1,66 @@
-h1 {
-	color: blue;
+.navbar {
+	background-color: #e3f2fd;
+	height: 90px;
+}
+
+.navbar-brand {
+	font-size: 28px;
+}
+
+#tagline {
+	font-size: 0.80em;
+}
+
+#main-panel {
+	margin-top: 24px;
+}
+
+#img {
+	width: 300px;
+	height: 300px;
+	border-radius: 3px;
+	margin: 10px 15px 15px 0;
+}
+
+#screen_name {
+	font-size: 0.9em;
+}
+
+#bio {
+	margin-top: 10px;
+}
+
+#prediction-panel {
+	padding-left: 0;
+}
+
+.prediction {
+	font-weight: 700;
+	font-size: 1.05;
+	width: 370;
+	text-align: right;
+}
+
+.prediction-wrapper {
+	clear: both;
+}
+
+.prediction-category {
+	width: 80px;
+	text-align: right;
+	display: inline-block;;
+	padding-bottom: 5px;
+	padding-top: 20px;
+}
+
+.plot-wrapper {
+	width: 370px;
+}
+
+.vega-embed {
+	padding-right: 0
+}
+
+.row {
+	width: 100%;
 }

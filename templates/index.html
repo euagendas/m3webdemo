@@ -1,37 +1,93 @@
 <!doctype html>
 <head>
 <title>M3 Multimodal, Multiattribute, Multilingual Demo</title>
+<link rel="stylesheet" 
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="static/style.css"/>
-<script language="JavaScript" src="static/jquery-3.4.1.min.js"></script>
-<script language="JavaScript" src="static/m3.js"></script>
+<script src="static/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.3.5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@3.2.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@4.0.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/@gjmcn/vizsla@0/dist/index.js"></script>
+<script src="static/m3.js"></script>
 </head>
 <body>
-  <h1>M3: Multimodal, Multiattribute, Multilingual Demo</h1>
 
-  <form>
-    @<input id="screen_name_input" name="screen_name" type="text" width="25px">
-    <input id="m3submit" type="submit">
-  </form>
+    <!-- navbar -->
+    <nav class="navbar navbar-light navbar-expand">
+        <div class="container">
+          <div class="navbar-nav">
+            
+            <span class="navbar-brand" href="#">M3 
+              <span id="tagline">multimodal, multiattribute, multilingual:</span>
+            </span>
 
-  <div id="input">
-    <img id="img" src="static/placeholder.png" width="400px" height="400px"/>
-    <dl class="attributes">
-      <dt>screen name</dt>
-      <dd id="screen_name">&nbsp;</dd>
-      <dt>Name</dt>
-      <dd id="name">&nbsp;</dd>
-      <dt>Biography</dt>
-      <dd id="bio">&nbsp;</dd>
-      <!--<dt>Language</dt>
-      <dd>{{ lang }}</dd>-->
-    </dl>
+            <form class="form-inline">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input class="form-control mr-sm-2" type="search" placeholder="username" id="screen_name_input" aria-label="Search" aria-describedby="basic-addon1">
+                <button class="btn btn-outline-primary my-2 my-sm-0" id="m3submit" type="submit">Predict</button>
+              </div>
+            </form>
+
+        </div>
+      </div>
+    </nav>
+
+    <!-- main content -->
+    <div class="container" id="main-panel">
+
+      <h5><span id="name"></span><span id="screen_name"></span></h5>
+
+      <div class="row">
+
+        <!-- image and bio -->
+        <div class="col-12 col-md-6">
+          <p id="bio"></p>
+          <img id="img" src="static/placeholder.png">
+        </div>
+
+        <!-- prediction -->
+        <div class="col-12 col-md-6" id="prediction-panel">
+          <div class="prediction-wrapper">
+            <div class="prediction-category">Gender:</div>
+            <span id="gender-prediction" class="prediction"></span>
+          </div>
+          <div class="plot-wrapper">
+            <div id="gender-plot" class="float-right"></div>
+          </div>
+          <div class="prediction-wrapper">
+            <div class="prediction-category">Age:</div>
+            <span id="age-prediction" class="prediction"></span>
+          </div>
+          <div class="plot-wrapper">
+            <div id="age-plot" class="float-right"></div>
+          </div>
+          <div class="prediction-wrapper">
+            <div class="prediction-category">Account:</div>
+            <span id="org-prediction" class="prediction"></span>
+          </div>  
+          <div class="plot-wrapper">
+            <div id="org-plot" class="float-right"></div>
+          </div>
+      </div>
+
+    </div>
 
   </div>
 
-  <div>
-    <pre id="output">
-
-    </pre>
+  <div class="row">
+      <div class="col-12 col-md-6">&nbsp;
+      </div>
+      <div class="col-12 col-md-6">
+        <pre id="output"></pre>
+      </div>
   </div>
+
+  <br><br><br>
 
 </body>

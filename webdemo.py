@@ -4,11 +4,12 @@
 
 from flask import Flask, url_for, render_template, Response
 
-from m3twitter import M3Twitter
+from m3inference import M3Twitter
+import json
 
 app = Flask(__name__)
 
-m3twitter=M3Twitter()
+m3twitter=M3Twitter(cache_dir="static/m3/")
 
 #url_for('static', filename='index.html')
 
@@ -20,6 +21,6 @@ def index():
 def infer_screen_name(screen_name):
 	global m3twitter
 	output=m3twitter.infer_screen_name(screen_name)
-	return Response(output, mimetype='text/json')
+	return Response(json.dumps(output), mimetype='text/json')
 
 
