@@ -1,5 +1,11 @@
 $(document).ready(function(){
 	console.log("m3 started.");
+
+	$('#screen_name_input').autocomplete({
+		serviceUrl: '/autocomplete/screen_name',
+		dataType: 'json'
+	});
+
 	//var test_data={"input": {"description": "Sr Data Scientist @oiioxford & @turinginst Fellow researching multilingualism, UX,  i18n/l10n, mobilization/collective action, SNA, and visualization.", "id": "1", "img_path": "static/m3/computermacgyve.jpg", "lang": "en", "name": "Scott Hale", "screen_name": "computermacgyve"}, "output": {"gender": {"male": 0.9999, "female": 0.0001}, "age": {"<=18": 0.0082, "18-29": 0.0281, "30-39": 0.0767, ">=40": 0.887}, "org": {"non-org": 0.9979, "is-org": 0.0021}}};
 	//set_data(test_data);
 	//clear_data();
@@ -11,7 +17,13 @@ $(document).ready(function(){
 		url: "infer/"+screen_name
 	  }).done(function(data) {
 		console.log(data);
-		set_data(data);
+		if ("output" in data) {
+			set_data(data);
+		} else {
+			clear_data();
+			$("#bio").html("No data for " + data["input"]["screen_name"] + ". Please check for a typo.");
+
+		}
 	  });
 	  return false;
 
