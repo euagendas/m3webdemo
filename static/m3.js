@@ -31,6 +31,7 @@ $(document).ready(function(){
 		$("#screen_name").html(' (@' + data["input"]["screen_name"] +")");
 		$("#name").html(data["input"]["name"]);
 		$("#output").html(JSON.stringify(data["output"], null, space=5));
+		//$("#input").html(JSON.stringify(data["input"], null, space=5));
 
 		//--------------- ADDED BY GM ---------------
 
