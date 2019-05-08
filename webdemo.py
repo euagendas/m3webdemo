@@ -25,7 +25,7 @@ def infer_screen_name(screen_name):
 		output=m3twitter.infer_screen_name(screen_name)
 		add_screen_name(screen_name)
 		return Response(json.dumps(output), mimetype='text/json')
-	except urllib.error.HTTPError as err:
+	except urllib.error.HTTPError:
 		return Response(json.dumps({"input":{"screen_name":screen_name}}), mimetype='text/json')
 
 
