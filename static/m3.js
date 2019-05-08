@@ -57,7 +57,7 @@ $(document).ready(function(){
 		//--------------- ADDED BY GM ---------------
 
 		const {gender, age, org} = data.output;
-		const ageGroups = ['<=18','18-29','30-39','>=40'];  //ensure desired order
+		const ageGroups = ['<=18','19-29','30-39','>=40'];  //ensure desired order
 		const xBaseAxis = {axis: {title: '', labelFontSize: 10}, scale: {domain: [0,1]}};
 		const yBaseAxis = {axis: {title: '', labelFontSize: 10.5}};
 		const plotWidth = 240;
