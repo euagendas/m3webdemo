@@ -1,8 +1,11 @@
 $(document).ready(function(){
 	console.log("m3 started.");
 
+	//https://github.com/devbridge/jQuery-Autocomplete
 	$('#screen_name_input').autocomplete({
 		serviceUrl: '/autocomplete/screen_name',
+		preventBadQueries: false,
+		noCache: true,
 		dataType: 'json'
 	});
 
@@ -92,7 +95,7 @@ $(document).ready(function(){
 		);
 
 		//org
-		$('#org-prediction').text(org.is-org > org.non-org ? 'Organization' : 'Non-organization');
+		$('#org-prediction').text(org["is-org"] > org["non-org"] ? 'Organization' : 'Non-organization');
 		vegaEmbed(
 			'#org-plot',
 			vz([
