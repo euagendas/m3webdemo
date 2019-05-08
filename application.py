@@ -1,6 +1,6 @@
 #Run using:
 # export PATH=/home/shale/anaconda3/bin:$PATH
-# FLASK_APP=webdemo.py python -m flask run
+# FLASK_APP=application.py python -m flask run
 #
 
 from flask import Flask, url_for, render_template, Response, request
