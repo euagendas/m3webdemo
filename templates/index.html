@@ -30,7 +30,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">@</span>
                 </div>
-                <input class="form-control mr-sm-2" type="search" placeholder="username" id="screen_name_input" aria-label="Search" aria-describedby="basic-addon1">
+                <input class="form-control mr-sm-2" type="search" placeholder="Twitter screen name" id="screen_name_input" aria-label="Search" aria-describedby="basic-addon1">
                 <button class="btn btn-outline-primary my-2 my-sm-0" id="m3submit" type="submit">Predict</button>
               </div>
             </form>
@@ -81,7 +81,15 @@
 
     <div class="row">
         <div class="col-12 col-md-6">
-            <pre id="input"></pre>
+            <!--<pre id="input"></pre>-->
+            <p>
+              M3 is a deep learning system for demographic inference from social media profile data.
+            Please see our <a href="https://github.com/euagendas/m3inference">open-source Python library, m3inference</a> or <a href="https://doi.org/10.1145/3308558.3313684">read our WWW 2019 paper</a> for details.
+            </p>
+            
+            <p>This web demo was created by <a href="http://www.oii.ox.ac.uk/people/hale/">Scott Hale</a> and <a href="https://www.oii.ox.ac.uk/people/graham-mcneill/">Graham McNeill</a>. 
+            The plots are produced with the <a href="https://github.com/gjmcn/vizsla">Visla JavaScript API for Vega-Lite</a>.
+          </p>
         </div>
         <div class="col-12 col-md-6">
           <pre id="output"></pre>
