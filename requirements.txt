@@ -1,2 +1,2 @@
 flask
-m3inference
+m3inference>=1.0.2
