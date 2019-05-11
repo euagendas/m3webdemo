@@ -12,25 +12,34 @@ $(document).ready(function(){
 	//var test_data={"input": {"description": "Sr Data Scientist @oiioxford & @turinginst Fellow researching multilingualism, UX,  i18n/l10n, mobilization/collective action, SNA, and visualization.", "id": "1", "img_path": "static/m3/computermacgyve.jpg", "lang": "en", "name": "Scott Hale", "screen_name": "computermacgyve"}, "output": {"gender": {"male": 0.9999, "female": 0.0001}, "age": {"<=18": 0.0082, "19-29": 0.0281, "30-39": 0.0767, ">=40": 0.887}, "org": {"non-org": 0.9979, "is-org": 0.0021}}};
 	//set_data(test_data);
 	//clear_data();
+
+	//console.log(window.location.hash);
+	if (window.location.hash.length>1 && window.location.hash.length<=16) {
+		console.log("querystring is " + window.location.hash)
+		call_m3(window.location.hash.substr(1));
+	}
+
 	$("#m3submit").click(function(){
 	  var screen_name=$("#screen_name_input").val();
-	  console.log("Calling m3 with " + screen_name)
-	  //clear_data();
-	  $.ajax({
-		url: "infer/"+screen_name
-	  }).done(function(data) {
-		console.log(data);
-		if ("output" in data) {
-			set_data(data);
-		} else {
-			clear_data();
-			$("#bio").html("No data for " + data["input"]["screen_name"] + ". Please check for a typo.");
-
-		}
-	  });
+	  window.location.hash=screen_name;
+	  call_m3(screen_name);
 	  return false;
-
 	});
+
+	function call_m3(screen_name) {
+		console.log("Calling m3 with " + screen_name);
+		clear_data(); //ensure data is cleared before call.
+		$.ajax({
+			url: "infer/"+screen_name
+		  }).done(function(data) {
+			console.log(data);
+			if ("output" in data) {
+				set_data(data);
+			} else {
+				$("#bio").html("No data for " + data["input"]["screen_name"] + ". Please check for a typo.");
+			}
+		  });	
+	}
 
 	function clear_data(){
 		$("#img").attr("src","static/placeholder.png")
