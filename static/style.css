@@ -61,10 +61,11 @@
 	padding-right: 0
 }
 
-.row {
-	width: 100%;
+#about {
+	margin-top: 5px;
+	padding: 10px;
+	/*border-top: 0.5px solid #AAA;*/
 }
-
 
 .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
 .autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }

@@ -12,6 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.2.1"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@4.0.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/@gjmcn/vizsla@0/dist/index.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="static/m3.js"></script>
 </head>
 <body>
@@ -43,7 +44,6 @@
     <div class="container" id="main-panel">
 
       <h5><span id="name"></span><span id="screen_name"></span></h5>
-
       <div class="row">
 
         <!-- image and bio -->
@@ -52,51 +52,66 @@
           <img id="img" src="static/placeholder.png">
         </div>
 
-        <!-- prediction -->
+        <!-- prediction viz -->
         <div class="col-12 col-md-6" id="prediction-panel">
-          <div class="prediction-wrapper">
-            <div class="prediction-category">Gender:</div>
-            <span id="gender-prediction" class="prediction"></span>
-          </div>
-          <div class="plot-wrapper">
-            <div id="gender-plot" class="float-right"></div>
-          </div>
-          <div class="prediction-wrapper">
-            <div class="prediction-category">Age:</div>
-            <span id="age-prediction" class="prediction"></span>
-          </div>
-          <div class="plot-wrapper">
-            <div id="age-plot" class="float-right"></div>
-          </div>
-          <div class="prediction-wrapper">
-            <div class="prediction-category">Account:</div>
-            <span id="org-prediction" class="prediction"></span>
-          </div>  
-          <div class="plot-wrapper">
-            <div id="org-plot" class="float-right"></div>
-          </div>
+
+          <!--tabs -->
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="viz-tab" data-toggle="tab" href="#viz" role="tab" aria-controls="viz" aria-selected="true">Visualised</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="json-tab" data-toggle="tab" href="#json" role="tab" aria-controls="json" aria-selected="false">JSON</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="viz" role="tabpanel" aria-labelledby="viz-tab">
+                  <div class="prediction-wrapper">
+                      <div class="prediction-category">Gender:</div>
+                      <span id="gender-prediction" class="prediction"></span>
+                    </div>
+                    <div class="plot-wrapper">
+                      <div id="gender-plot" class="float-right"></div>
+                    </div>
+                    <div class="prediction-wrapper">
+                      <div class="prediction-category">Age:</div>
+                      <span id="age-prediction" class="prediction"></span>
+                    </div>
+                    <div class="plot-wrapper">
+                      <div id="age-plot" class="float-right"></div>
+                    </div>
+                    <div class="prediction-wrapper">
+                      <div class="prediction-category">Account:</div>
+                      <span id="org-prediction" class="prediction"></span>
+                    </div>  
+                    <div class="plot-wrapper">
+                      <div id="org-plot" class="float-right"></div>
+                    </div>
+              </div>
+              <div class="tab-pane fade" id="json" role="tabpanel" aria-labelledby="json-tab">
+                  <pre id="output"></pre>
+              </div>
+            </div>          
       </div>
 
+
     </div>
+  </div>
 
     <div class="row">
-        <div class="col-12 col-md-6">
-            <!--<pre id="input"></pre>-->
+        <div class="container">
+        <div class="col-12 col-md-12"  id="about">
+          <h4>Learn more</h4>
             <p>
               M3 is a deep learning system for demographic inference from social media profile data.
             Please see our <a href="https://github.com/euagendas/m3inference">open-source Python library, m3inference</a> or <a href="https://doi.org/10.1145/3308558.3313684">read our WWW 2019 paper</a> for details.
             </p>
             
             <p>This web demo was created by <a href="http://www.oii.ox.ac.uk/people/hale/">Scott Hale</a> and <a href="https://www.oii.ox.ac.uk/people/graham-mcneill/">Graham McNeill</a>. 
-            The plots are produced with the <a href="https://github.com/gjmcn/vizsla">Visla JavaScript API for Vega-Lite</a>.
+            The plots are produced with the <a href="https://github.com/gjmcn/vizsla">Visla JavaScript API for Vega-Lite</a>, and the <a href="https://github.com/euagendas/m3webdemo">source code</a> is available.
           </p>
         </div>
-        <div class="col-12 col-md-6">
-          <pre id="output"></pre>
         </div>
     </div>
-</div>
-
-  <br><br><br>
 
 </body>
