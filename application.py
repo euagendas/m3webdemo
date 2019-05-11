@@ -8,6 +8,7 @@ from flask import Flask, url_for, render_template, Response, request
 from m3inference import M3Twitter
 import json
 import glob
+import urllib
 
 app = Flask(__name__)
 
@@ -20,13 +21,19 @@ def index():
 
 @app.route('/infer/<screen_name>')
 def infer_screen_name(screen_name):
-	global m3twitter
-	try:
-		output=m3twitter.infer_screen_name(screen_name)
-		add_screen_name(screen_name)
-		return Response(json.dumps(output), mimetype='text/json')
-	except urllib.error.HTTPError:
+	if len(screen_name)>15:
+		#Invalid screen_name don't even bother
 		return Response(json.dumps({"input":{"screen_name":screen_name}}), mimetype='text/json')
+	else:
+		global m3twitter
+		try:
+			output=m3twitter.infer_screen_name(screen_name)
+			if "tw_default_profile.png" in output["input"]["img_path"]:
+				output["input"]["img_path"]="static/placeholder.png"
+			add_screen_name(screen_name)
+			return Response(json.dumps(output), mimetype='text/json')
+		except urllib.error.HTTPError:
+			return Response(json.dumps({"input":{"screen_name":screen_name}}), mimetype='text/json')
 
 
 def add_screen_name(screen_name):

@@ -15,8 +15,10 @@ $(document).ready(function(){
 
 	//console.log(window.location.hash);
 	if (window.location.hash.length>1 && window.location.hash.length<=16) {
-		console.log("querystring is " + window.location.hash)
-		call_m3(window.location.hash.substr(1));
+		console.log("hash is " + window.location.hash)
+		var sn=window.location.hash.substr(1);
+		$("#screen_name_input").val(sn);
+		call_m3(sn);
 	}
 
 	$("#m3submit").click(function(){
