@@ -66,27 +66,33 @@
             </ul>
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="viz" role="tabpanel" aria-labelledby="viz-tab">
+                  <div id="org">
+                      <div class="prediction-wrapper" id="org-wrapper">
+                        <div class="prediction-category" id="org-label">Account:</div>
+                        <span id="org-prediction" class="prediction"></span>
+                      </div>  
+                      <div class="plot-wrapper">
+                        <div id="org-plot" class="float-right"></div>
+                      </div>
+                    </div>
+                  <div id="gender">
                   <div class="prediction-wrapper">
-                      <div class="prediction-category">Gender:</div>
+                      <div class="prediction-category" id="gender-label">Gender:</div>
                       <span id="gender-prediction" class="prediction"></span>
                     </div>
                     <div class="plot-wrapper">
                       <div id="gender-plot" class="float-right"></div>
                     </div>
-                    <div class="prediction-wrapper">
-                      <div class="prediction-category">Age:</div>
+                  </div>
+                  <div id="age">
+                    <div class="prediction-wrapper" id="age-wrapper">
+                      <div class="prediction-category" id="age-label">Age:</div>
                       <span id="age-prediction" class="prediction"></span>
                     </div>
                     <div class="plot-wrapper">
                       <div id="age-plot" class="float-right"></div>
                     </div>
-                    <div class="prediction-wrapper">
-                      <div class="prediction-category">Account:</div>
-                      <span id="org-prediction" class="prediction"></span>
-                    </div>  
-                    <div class="plot-wrapper">
-                      <div id="org-plot" class="float-right"></div>
-                    </div>
+                  </div>
               </div>
               <div class="tab-pane fade" id="json" role="tabpanel" aria-labelledby="json-tab">
                   <pre id="output"></pre>

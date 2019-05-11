@@ -9,7 +9,7 @@ $(document).ready(function(){
 		dataType: 'json'
 	});
 
-	//var test_data={"input": {"description": "Sr Data Scientist @oiioxford & @turinginst Fellow researching multilingualism, UX,  i18n/l10n, mobilization/collective action, SNA, and visualization.", "id": "1", "img_path": "static/m3/computermacgyve.jpg", "lang": "en", "name": "Scott Hale", "screen_name": "computermacgyve"}, "output": {"gender": {"male": 0.9999, "female": 0.0001}, "age": {"<=18": 0.0082, "18-29": 0.0281, "30-39": 0.0767, ">=40": 0.887}, "org": {"non-org": 0.9979, "is-org": 0.0021}}};
+	//var test_data={"input": {"description": "Sr Data Scientist @oiioxford & @turinginst Fellow researching multilingualism, UX,  i18n/l10n, mobilization/collective action, SNA, and visualization.", "id": "1", "img_path": "static/m3/computermacgyve.jpg", "lang": "en", "name": "Scott Hale", "screen_name": "computermacgyve"}, "output": {"gender": {"male": 0.9999, "female": 0.0001}, "age": {"<=18": 0.0082, "19-29": 0.0281, "30-39": 0.0767, ">=40": 0.887}, "org": {"non-org": 0.9979, "is-org": 0.0021}}};
 	//set_data(test_data);
 	//clear_data();
 	$("#m3submit").click(function(){
@@ -38,6 +38,10 @@ $(document).ready(function(){
 		$("#screen_name").html("");
 		$("#name").html("");
 		$("#output").html("");
+		$("#age").hide();
+		$("#gender").hide();
+		$("#org").hide();
+		//$("#input").html("");
 		$('#gender-prediction').text("");
 		$('#gender-plot').html("");
 		$('#age-prediction').text("");
@@ -57,45 +61,50 @@ $(document).ready(function(){
 		//--------------- ADDED BY GM ---------------
 
 		const {gender, age, org} = data.output;
+		const is_org=org["is-org"] > org["non-org"];
 		const ageGroups = ['<=18','19-29','30-39','>=40'];  //ensure desired order
 		const xBaseAxis = {axis: {title: '', labelFontSize: 10}, scale: {domain: [0,1]}};
 		const yBaseAxis = {axis: {title: '', labelFontSize: 10.5}};
 		const plotWidth = 240;
 
-		//gender
-		$('#gender-prediction').text(gender.male > gender.female ? 'Male' : 'Female');
-		vegaEmbed(
-			'#gender-plot',
-			vz([
-					{Gender: 'Female', Probability: gender.female},
-					{Gender: 'Male',   Probability: gender.male}
-				])
-				.bar()
-				.x('Probability', 'q', xBaseAxis)
-				.y('Gender',      'n', yBaseAxis)
-				.width(plotWidth)
-				.prep(),
-			{actions: false}
-		);
+		if (!is_org) {
+			//gender
+			$("#gender").show();
+			$('#gender-prediction').text(gender.male > gender.female ? 'Male' : 'Female');
+			vegaEmbed(
+				'#gender-plot',
+				vz([
+						{Gender: 'Female', Probability: gender.female},
+						{Gender: 'Male',   Probability: gender.male}
+					])
+					.bar()
+					.x('Probability', 'q', xBaseAxis)
+					.y('Gender',      'n', yBaseAxis)
+					.width(plotWidth)
+					.prep(),
+				{actions: false}
+			);
 
-		//age
-		$('#age-prediction').text(() => {
-			const ageProbs = ageGroups.map(g => age[g]);
-			return ageGroups[ageProbs.indexOf(Math.max(...ageProbs))];
-		});
-		vegaEmbed(
-			'#age-plot',
-			vz(ageGroups.map(g => ({Age: g, Probability: age[g]})))
-				.bar()
-				.x('Probability', 'q', xBaseAxis)
-				.y('Age',         'n', Object.assign({sort: ageGroups}, yBaseAxis))
-				.width(plotWidth)
-				.prep(),
-			{actions: false}
-		);
-
+			//age
+			$("#age").show();
+			$('#age-prediction').text(() => {
+				const ageProbs = ageGroups.map(g => age[g]);
+				return ageGroups[ageProbs.indexOf(Math.max(...ageProbs))];
+			});
+			vegaEmbed(
+				'#age-plot',
+				vz(ageGroups.map(g => ({Age: g, Probability: age[g]})))
+					.bar()
+					.x('Probability', 'q', xBaseAxis)
+					.y('Age',         'n', Object.assign({sort: ageGroups}, yBaseAxis))
+					.width(plotWidth)
+					.prep(),
+				{actions: false}
+			);
+		}
 		//org
-		$('#org-prediction').text(org["is-org"] > org["non-org"] ? 'Organization' : 'Non-organization');
+		$("#org").show();
+		$('#org-prediction').text(is_org ? 'Organization' : 'Non-organization');
 		vegaEmbed(
 			'#org-plot',
 			vz([
