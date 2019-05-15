@@ -1,7 +1,18 @@
-#Run using:
-# export PATH=/home/shale/anaconda3/bin:$PATH
-# FLASK_APP=application.py python -m flask run
-#
+# This file is part of m3webdemo.
+
+# m3webdemo is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# m3webdemo is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+# along with m3webdemo.  If not, see <https://www.gnu.org/licenses/>.
+
 
 from flask import Flask, url_for, render_template, Response, request
 
@@ -12,7 +23,7 @@ import urllib
 
 app = Flask(__name__)
 
-m3twitter=M3Twitter(cache_dir="static/m3/")
+m3twitter=M3Twitter(cache_dir="static/m3/",model_dir="./")
 screen_name_list=[x.replace(".json","").replace("static/m3/","") for x in glob.glob("static/m3/*.json")]
 
 @app.route('/')
