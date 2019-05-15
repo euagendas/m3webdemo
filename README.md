@@ -41,3 +41,11 @@ We use issues on this GitHub for all questions or suggestions.  For specific inq
 This source code is licensed under the GNU Affero General Public License, which allows for non-commercial re-use of this software.  For commercial inquiries, please contact us directly. Please see the LICENSE file in the root directory of this source tree for details.
 
 This source code includes a copy of [jQuery-Autocomplete](https://github.com/devbridge/jQuery-Autocomplete). See the file or linked repository for further details about its licensing.
+
+We also use [Vizsla](https://github.com/gjmcn/vizsla), a simple JavaScript API for Vega-Lite.
+
+## Acknowledgements
+This web demo was created by [Scott A. Hale](https://www.oii.ox.ac.uk/people/hale/) and [Graham McNeill](https://www.oii.ox.ac.uk/people/graham-mcneill/). The research leading to M3 was carried out by [Zijian Wang](https://twitter.com/zijianwang30), [Scott A. Hale](https://www.oii.ox.ac.uk/people/hale/), [David Adelani](https://www.lsv.uni-saarland.de/?id=231),
+[Przemyslaw A. Grabowicz](https://www.cics.umass.edu/people/grabowicz-przemyslaw), [Timo Hartmann](https://www.researchgate.net/profile/Timo_Hartmann), 
+[Fabian Fl&ouml;ck](https://www.gesis.org/person/fabian.floeck), and [David Jurgens](http://jurgens.people.si.umich.edu/). We thank the Volkswagen Foundation and the EPSRC for supporting the research.
+
