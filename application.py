@@ -20,10 +20,17 @@ from m3inference import M3Twitter
 import json
 import glob
 import urllib
+import os
 
 app = Flask(__name__)
 
 m3twitter=M3Twitter(cache_dir="static/m3/",model_dir="./")
+m3twitter.twitter_init(
+    api_key=os.environ["api_key"],
+    api_secret=os.environ["api_secret"],
+    access_token=os.environ["access_token"],
+    access_secret=os.environ["access_secret"]
+)
 screen_name_list=[x.replace(".json","").replace("static/m3/","") for x in glob.glob("static/m3/*.json")]
 
 @app.route('/')
