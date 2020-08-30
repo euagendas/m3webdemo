@@ -46,6 +46,15 @@ def infer_screen_name(screen_name):
 		global m3twitter
 		try:
 			output=m3twitter.infer_screen_name(screen_name)
+			if output==None:
+				#this is a bad hack and should be pushed into m3inference
+				#output==none when there is an error with the Twitter API
+				try:
+					os.remove("static/m3/{}.json".format(screen_name))
+				except:
+					pass
+				with open("static/m3/empty.txt","r") as fh:
+					return Response(fh.read(), mimetype='text/json')
 			if "tw_default_profile.png" in output["input"]["img_path"]:
 				output["input"]["img_path"]="static/placeholder.png"
 			add_screen_name(screen_name)

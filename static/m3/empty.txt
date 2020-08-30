@@ -1,1 +1,1 @@
-This directory holds the cache for m3. It should be empty to start.
+{"input": {"description": "Error with the Twitter API. No data returned. Please wait 15 mintues an try again.", "id": "0000000", "img_path": "static/placeholder.png", "lang": "en", "name": "Twitter API Error", "screen_name": ""}, "output": {"gender": {"male": 0, "female": 0}, "age": {"<=18": 0.0, "19-29": 0, "30-39": 0, ">=40": 0}, "org": {"non-org": 0, "is-org": 0}}}
